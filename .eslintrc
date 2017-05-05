@@ -14,17 +14,13 @@
     "generators": true,
     "modules": true,
     "spread": true,
-    "templateStrings": true,
-    "jsx": true
+    "templateStrings": true
   },
   "parser": "babel-eslint",
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": ["eslint:recommended"],
   "rules": {
     "quotes": [2, "single"],
     "strict": [2, "never"],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2,
     "consistent-return": [0],
     "key-spacing": [0],
     "new-cap": [0],
@@ -34,7 +30,6 @@
     "no-use-before-define": [2, "nofunc"]
   },
   "plugins": [
-    "babel",
-    "react"
+    "babel"
   ]
 }

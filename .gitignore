@@ -5,4 +5,3 @@ node_modules
 /.project
 /.settings/
 jspm_packages
-dist

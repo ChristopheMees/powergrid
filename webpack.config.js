@@ -1,13 +1,10 @@
-const CopyWebpackPlugin = require('copy-webpack-plugin');
-
+const webpack = require('webpack');
 module.exports = {
 
-    devtool: 'source-map',
+    devtool: 'cheap-module-source-map',
 
-    entry: [
-          'babel-polyfill',
-          './web/index.js'
-        ],
+    entry: './web/main.js',
+
     module: {
         loaders: [
             {
@@ -21,32 +18,29 @@ module.exports = {
             },
             {
                 test: /\.(ttf|eot|svg|gif|woff(2)?)(\?[a-z0-9=&.]+)?$/,
-                loader: 'file-loader'
+                loader: 'url-loader'
             },
             {
                 test: /\.html$/,
                 loader: 'html'
-            },
-            {
-                test: /\.json/,
-                loader: 'json'
             }]
     },
     resolve: {
         modulesDirectories: ['web', 'node_modules'],
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js']
     },
     output: {
         path: __dirname + '/dist',
-        publicPath: '/',
-        filename: 'bundle.js'
-    },
-    devServer: {
-        contentBase: './dist'
+        filename: 'main.js',
+        library: 'powergrid',
+        libraryTarget: 'amd'
     },
     plugins: [
-        new CopyWebpackPlugin([
-            { from: 'web/react.html', to: 'index.html' }
-        ])
+      new webpack.DefinePlugin({
+          'process.env': {
+              'NODE_ENV': JSON.stringify('production')
+          }
+      }),
+      new webpack.optimize.UglifyJsPlugin()
     ]
 };
