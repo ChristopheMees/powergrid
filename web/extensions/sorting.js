@@ -57,14 +57,15 @@ define(['../override', 'jquery', '../utils', '../datasources/sortingdatasource.j
                         if(column.sortable === undefined || column.sortable) {
                             header.append('<div class=\'pg-sorter\'>');
                             header.addClass('pg-sortable');
+                            var key = typeof column.key === 'string' ? column.key : JSON.stringify(column.key);
                             console.log('column', column);
                             console.log('sortColumns', sortColumns);
                             console.log('sortColumns[0]', sortColumns[0]);
                             console.log('sortColumns[0].key', sortColumns[0].key);
                             console.log('column.key', column.key);
-                            console.log('sortColumns[0].key === column.key', sortColumns[0].key === column.key);
-                            var key = typeof column.key === 'string' ? column.key : JSON.stringify(column.key);
-                            if(sortColumns[0] && JSON.stringify(sortColumns[0].key) === key) {
+                            console.log('key', key);
+                            console.log('sortColumns[0].key === key', sortColumns[0].key === key);
+                            if(sortColumns[0] && sortColumns[0].key === key) {
                                 header.addClass('pg-sort-' + sortColumns[0].direction);
                             }
                         }
